@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { loginAPI } from '../api/api';
+import { setAuthorizationToken } from '../utils/interceptor';
 
 function Login() {
   const [uid, setUid] = useState("wwe5455");
@@ -22,7 +23,16 @@ function Login() {
         "auth_type" : 0
     };
     const loginData = await loginAPI(submitData);
-    console.log(loginData);
+    const { status, data } = loginData;
+    const accessToken = data.accessToken;
+    if (status === 200) {
+        localStorage.setItem('accessToken',accessToken);
+        setAuthorizationToken(accessToken);
+        alert(`${data.message}`);
+        window.location.href=`/`;
+    } else {
+        alert(`Error : ${data.message}`);
+    }
   }
   
   return (
