@@ -142,13 +142,7 @@ a:hover, a:focus {
 }
 
 /* CUSTOM */
-#map {
-  width: 80%; height:360px;
-  display: block;
-  margin: 0 auto;
-}
 .background{
-    padding-top: 50px;
     padding-bottom: 50px;
     background-image: url('../img/background.jpg');
     background-size: cover;
