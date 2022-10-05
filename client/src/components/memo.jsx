@@ -27,8 +27,7 @@ function Memo() {
         <MarkerClusterer
             averageCenter={true}
             minLevel={5}
-        >
-        </MarkerClusterer>
+        >        
         {
             mapData&&mapData.map((items) => {
                 return <MapMarker
@@ -43,6 +42,7 @@ function Memo() {
               />
             })
         }
+        </MarkerClusterer>
     </Map>
         <div className="container bootstrap snippets bootdeys">
             <div className="row">
