@@ -19,106 +19,56 @@ function Memo() {
   return (
     <>
     <div className="background">
-    <Map
-        center={{ lat: 37.566812940227386, lng: 126.9786522620371 }}
-        style={{ width: "80%", height: "360px", display: "block", margin: "0 auto"}}
-        level={9}
-    >
-        <MarkerClusterer
-            averageCenter={true}
-            minLevel={5}
-        >        
-        {
-            mapData&&mapData.map((items) => {
-                return <MapMarker
-                position={{
-                    lat: items.lat,
-                    lng: items.lng
-                }}
-                image={{
-                    src:items.markerimg.url,
-                    size:{width:60,height:60}
-                }}
-              />
-            })
-        }
-        </MarkerClusterer>
-    </Map>
+    <div className="mapbox">      
+      <Map
+          center={{ lat: 37.566812940227386, lng: 126.9786522620371 }}
+          style={{ width: "100%", height: "100%"}}
+          level={9}
+      >
+          <MarkerClusterer
+              averageCenter={true}
+              minLevel={5}
+          >        
+          {
+              mapData&&mapData.map((items) => {
+                  return <MapMarker
+                  position={{
+                      lat: items.lat,
+                      lng: items.lng
+                  }}
+                  image={{
+                      src:items.markerimg.url,
+                      size:{width:60,height:60}
+                  }}
+                />
+              })
+          }
+          </MarkerClusterer>
+      </Map>
+      <div className="toolbox">
+        <button type="button">
+          <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
         <div className="container bootstrap snippets bootdeys">
-            <div className="row">
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="blue" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Blue Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="green" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Green Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="yellow" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Yellow Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="brown" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Brown Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="purple" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Purple Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4 col-sm-6 content-card">
-                    <div className="card-big-shadow">
-                        <div className="card card-just-text" data-background="color" data-color="orange" data-radius="none">
-                            <div className="content">
-                                <h6 className="category">Best cards</h6>
-                                <h4 className="title"><a href="/">Orange Card</a></h4>
-                                <p className="description">What all of these have in common is that they're pulling information out of the app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>   
+          <div className="row"> 
+            {
+              mapData&&mapData.map((items) => {return <div className="col-md-4 col-sm-6 content-card">
+                      <div className="card-big-shadow">
+                          <div className="card card-just-text" data-background="color" data-color="blue" data-radius="none">
+                              <div className="content">
+                                  <h6 className="category">{items.writer}</h6>
+                                  <h4 className="title"><a href={items.objectId}>{items.title}</a></h4>
+                                  <p className="description">{items.description}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              })
+            }
+          </div>
+        </div>   
     </div> 
     </>
   )
