@@ -4,14 +4,22 @@ import { useEffect } from 'react';
 import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import { pageGetAllAPI } from "../api/api";
 import { setLocalStorageAuthorizationToken } from "../utils/interceptor";
+import pin from '../images/pin.png';
+import sample from '../images/background.jpg';
 
 function Memo() {
   const [mapData, setMapData] = useState();
+  const [pinData, setPinData] = useState(['여기를 클릭하면 사용 법이 나와요','핀을 클릭하고 사진을 클릭하면 제목이 바껴요! 제목을 클릭하면 다른 사람이 등록한 세부 내용을 볼 수 있어요',false]); // 인포윈도우 Open 여부를 저장하는 state 입니다.
+  const [showDetail, setShowDetail] = useState(false);
+
   const pageGetAllData = async () => {
     setLocalStorageAuthorizationToken(); // axios전 token 인터셉터 셋팅
     const getPageData = await pageGetAllAPI();
     const { data, status } = getPageData;
     setMapData(data);
+  }
+  const detailEvent = () => {
+    showDetail ? setShowDetail(false) : setShowDetail(true);
   }
   useEffect(()=>{
     pageGetAllData();
@@ -32,6 +40,8 @@ function Memo() {
           {
               mapData&&mapData.map((items) => {
                   return <MapMarker
+                  clickable={true} // 마커를 클릭했을 때 지도의 클릭 
+                  onClick={() => setPinData([items.title,items.description,items.markerimg.url])}
                   position={{
                       lat: items.lat,
                       lng: items.lng
@@ -45,30 +55,20 @@ function Memo() {
           }
           </MarkerClusterer>
       </Map>
-      <div className="toolbox">
-        <button type="button">
-          <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-        </button>
+      <div className={showDetail ? 'toolbox on':'toolbox'}>
+        <div className="title" onClick={detailEvent}>
+          <img src={pin} alt="" className="pin"/>
+            {pinData[0]&&pinData[0]}
+        </div>
+        <div className={showDetail ? 'detail on':'detail'}>
+        <img src={pinData[2] ? pinData[2]&&pinData[2] : sample} alt="" class="detail_img"/>
+          {pinData[1]&&pinData[1]}
+        </div>
+        <div className="write_btn">
+        나도 글쓰러 갈래
+        </div>
       </div>
     </div>
-        {/* <div className="container bootstrap snippets bootdeys">
-          <div className="row"> 
-            {
-              mapData&&mapData.map((items) => {return <div className="col-md-4 col-sm-6 content-card">
-                      <div className="card-big-shadow">
-                          <div className="card card-just-text" data-background="color" data-color="blue" data-radius="none">
-                              <div className="content">
-                                  <h6 className="category">{items.writer}</h6>
-                                  <h4 className="title"><a href={items.objectId}>{items.title}</a></h4>
-                                  <p className="description">{items.description}</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              })
-            }
-          </div>
-        </div>    */}
     </div> 
     </>
   )
