@@ -9,7 +9,7 @@ import sample from '../images/background.jpg';
 
 function Memo() {
   const [mapData, setMapData] = useState();
-  const [pinData, setPinData] = useState(['여기를 클릭하면 사용 법이 나와요','핀을 클릭하고 사진을 클릭하면 제목이 바껴요! 제목을 클릭하면 다른 사람이 등록한 세부 내용을 볼 수 있어요',false]); // 인포윈도우 Open 여부를 저장하는 state 입니다.
+  const [pinData, setPinData] = useState(['여기를 클릭하면 사용 법이 나와요','지도에 있는 사진을 클릭하면 제목이 바껴요! 제목을 클릭하면 등록된 세부 내용을 볼 수 있어요',false]); // 인포윈도우 Open 여부를 저장하는 state 입니다.
   const [showDetail, setShowDetail] = useState(false);
 
   const pageGetAllData = async () => {
