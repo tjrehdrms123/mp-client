@@ -9,12 +9,16 @@ import pin from '../images/pin.png';
 function Memo() {
   const [mapData, setMapData] = useState();
   const [pinData, setPinData] = useState(['지도에 있는 핀을 클릭해봐요!','']); // 인포윈도우 Open 여부를 저장하는 state 입니다.
+  const [showDetail, setShowDetail] = useState(false);
 
   const pageGetAllData = async () => {
     setLocalStorageAuthorizationToken(); // axios전 token 인터셉터 셋팅
     const getPageData = await pageGetAllAPI();
     const { data, status } = getPageData;
     setMapData(data);
+  }
+  const detailEvent = () => {
+    showDetail ? setShowDetail(false) : setShowDetail(true);
   }
   useEffect(()=>{
     pageGetAllData();
@@ -36,7 +40,7 @@ function Memo() {
               mapData&&mapData.map((items) => {
                   return <MapMarker
                   clickable={true} // 마커를 클릭했을 때 지도의 클릭 
-                  onClick={() => setPinData([items.title,items.objectId])}
+                  onClick={() => setPinData([items.title,items.description,items.markerimg.url])}
                   position={{
                       lat: items.lat,
                       lng: items.lng
@@ -51,9 +55,12 @@ function Memo() {
           </MarkerClusterer>
       </Map>
       <div className="toolbox">
-        <div className="title">
+        <div className="title" onClick={detailEvent}>
           <img src={pin} alt="" className="pin"/>
             {pinData[0]&&pinData[0]}
+        </div>
+        <div className={showDetail ? 'detail on':'detail'}>
+          {pinData[1]&&pinData[1]}
         </div>
         <div className="write_btn">
         나도 글쓰러 갈래
