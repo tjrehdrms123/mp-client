@@ -4,9 +4,12 @@ import { useEffect } from 'react';
 import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import { pageGetAllAPI } from "../api/api";
 import { setLocalStorageAuthorizationToken } from "../utils/interceptor";
+import pin from '../images/pin.png';
 
 function Memo() {
   const [mapData, setMapData] = useState();
+  const [pinData, setPinData] = useState(['지도에 있는 핀을 클릭해봐요!','']); // 인포윈도우 Open 여부를 저장하는 state 입니다.
+
   const pageGetAllData = async () => {
     setLocalStorageAuthorizationToken(); // axios전 token 인터셉터 셋팅
     const getPageData = await pageGetAllAPI();
@@ -32,6 +35,8 @@ function Memo() {
           {
               mapData&&mapData.map((items) => {
                   return <MapMarker
+                  clickable={true} // 마커를 클릭했을 때 지도의 클릭 
+                  onClick={() => setPinData([items.title,items.objectId])}
                   position={{
                       lat: items.lat,
                       lng: items.lng
@@ -46,9 +51,13 @@ function Memo() {
           </MarkerClusterer>
       </Map>
       <div className="toolbox">
-        <button type="button">
-          <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-        </button>
+        <div className="title">
+          <img src={pin} alt="" className="pin"/>
+            {pinData[0]&&pinData[0]}
+        </div>
+        <div className="write_btn">
+        나도 글쓰러 갈래
+        </div>
       </div>
     </div>
         {/* <div className="container bootstrap snippets bootdeys">

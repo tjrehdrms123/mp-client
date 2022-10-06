@@ -146,29 +146,53 @@ a:hover, a:focus {
     background-image: url('../img/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top; */
-    padding: 3%;
+    background-position: top; 
+    */
 }
 .mapbox{
-    width: 95%;
-    height: 93vh;
-    background-color: #3d3d3d;
+    width: 100%;
+    height: 100vh;
     display: flex;
-    padding: 15px;
-    padding-bottom: 60px;
-    border-radius: 8px;
-    border: 1px solid rgb(128, 128, 128);
     margin: 0 auto;
     position: relative;
 }
 .mapbox > .toolbox{
     position: absolute;
-    bottom: 13px;
-    left: 0;
-    display: block;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 0 auto;
     text-align: center;
+    z-index: 1;
+    background: #fff;
+    height: 130px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 5px 13px 20px 8px #686868;
+    padding: 7px 20px;
+}
+.mapbox > .toolbox > .title{    
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 11px 0;
+}
+.mapbox > .toolbox > .title > a{
+    color: #000000;
+}
+.mapbox > .toolbox > .title > .pin{
+    width: 40px;
+}
+.mapbox > .toolbox > .write_btn{
+    display: flex;
+    background: #f13f57;
+    height: 43px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
 }
 /* 로그인 페이지 */
 .form-signin {
