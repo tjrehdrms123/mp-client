@@ -11,6 +11,7 @@ function Memo() {
   const [mapData, setMapData] = useState();
   const [pinData, setPinData] = useState(['여기를 클릭하면 사용 법이 나와요','지도에 있는 사진을 클릭하면 제목이 바껴요! 제목을 클릭하면 등록된 세부 내용을 볼 수 있어요',false]); // 인포윈도우 Open 여부를 저장하는 state 입니다.
   const [showDetail, setShowDetail] = useState(false);
+  const [showWrite, setShowWrite] = useState(false);
 
   const pageGetAllData = async () => {
     setLocalStorageAuthorizationToken(); // axios전 token 인터셉터 셋팅
@@ -21,6 +22,10 @@ function Memo() {
   const detailEvent = () => {
     showDetail ? setShowDetail(false) : setShowDetail(true);
   }
+  const writeEvent = () => {
+    showWrite ? setShowWrite(false) : setShowWrite(true);
+  }
+
   useEffect(()=>{
     pageGetAllData();
   },[]);
@@ -64,7 +69,10 @@ function Memo() {
         <img src={pinData[2] ? pinData[2]&&pinData[2] : sample} alt="" class="detail_img"/>
           {pinData[1]&&pinData[1]}
         </div>
-        <div className="write_btn">
+        <div className={showWrite ? 'showWriteBox on':'showWriteBox'}>
+          
+        </div>
+        <div className="write_btn" onClick={writeEvent}>
         나도 글쓰러 갈래
         </div>
       </div>
