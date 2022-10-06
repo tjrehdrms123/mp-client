@@ -141,16 +141,17 @@ a:hover, a:focus {
 
 /* CUSTOM */
 .background{
-    padding-top: 50px;
+    /* padding-top: 50px;
     padding-bottom: 50px;
     background-image: url('../img/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: top; */
+    padding: 3%;
 }
 .mapbox{
-    width: 90%;
-    height: 560px;
+    width: 95%;
+    height: 93vh;
     background-color: #3d3d3d;
     display: flex;
     padding: 15px;

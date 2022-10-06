@@ -51,7 +51,7 @@ function Memo() {
         </button>
       </div>
     </div>
-        <div className="container bootstrap snippets bootdeys">
+        {/* <div className="container bootstrap snippets bootdeys">
           <div className="row"> 
             {
               mapData&&mapData.map((items) => {return <div className="col-md-4 col-sm-6 content-card">
@@ -68,7 +68,7 @@ function Memo() {
               })
             }
           </div>
-        </div>   
+        </div>    */}
     </div> 
     </>
   )
