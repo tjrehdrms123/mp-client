@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { pagePostAPI } from "../api/api";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
-import DaumPostcode from "react-daum-postcode";
+import { useDaumPostcodePopup } from "react-daum-postcode";
 import { useParams } from "react-router-dom";
 
 function Writer() {
-  const [visible, setVisible] = useState(false); // 우편번호 컴포넌트의 노출여부 상태
   const { objectId } = useParams();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
@@ -13,7 +12,6 @@ function Writer() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [makerImg, setMakerImg] = useState();
-  const [writeInfo, setWriteInfo] = useState();
   const onChangeTitleEvent = (e) => setTitle(e.target.value);
   const onChangeDescriptionEvent = (e) => setDescription(e.target.value);
   const onChangeWriterEvent = (e) => setWriter(e.target.value);
@@ -33,7 +31,12 @@ function Writer() {
     const writeData = await pagePostAPI(pageData);
     console.log("writeData: ", writeData);
     const { status, data } = writeData;
-    // post code
+  };
+  const open = useDaumPostcodePopup(
+    "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+  );
+
+  const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
 
@@ -47,8 +50,11 @@ function Writer() {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    setWriteInfo({ ...writeInfo, address: fullAddress });
-    setVisible(false);
+
+    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+  };
+  const handleClick = () => {
+    open({ onComplete: handleComplete });
   };
   return (
     <>
@@ -83,24 +89,9 @@ function Writer() {
           required
         />
         <br />
-        {visible ? (
-          <div>
-            <button title="닫기" onClick={() => setVisible(false)}>
-              닫기
-            </button>
-            <DaumPostcode
-              // onComplete={handleComplete}
-              // style={addressStyle}
-              height={700}
-            />
-          </div>
-        ) : null}
-
-        <div
-          placeholder="주소를 검색해주세요"
-          onClick={() => setVisible(true)}
-          defaultValue={writeInfo.address}
-        ></div>
+        <button type="button" onClick={handleClick}>
+          Open
+        </button>
         <br />
         <div
           type="submit"
