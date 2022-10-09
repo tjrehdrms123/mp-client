@@ -3,6 +3,7 @@ import Mainmap from "./components/mainmap";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./components/register";
 import "./css/index.css";
+import Writer from "./components/write";
 function App() {
   const localStorageAccessToken = localStorage.getItem("accessToken");
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/map" element={<Mainmap />}></Route>
           <Route path="/map/:objectId" element={<Mainmap />}></Route>
+          <Route path="/writer/:objectId" element={<Writer />}></Route>
           <Route path="/" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>

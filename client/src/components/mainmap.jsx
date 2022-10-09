@@ -96,7 +96,7 @@ function Mainmap() {
                 <Link to={"/map"}>전체 추억 보기</Link>
               </div>
               <div className="write_btn" onClick={writeEvent}>
-                추억 남기기
+                <Link to={`/writer/${objectId}`}>추억 남기기</Link>
               </div>
               <div className="write_btn" onClick={writeEvent}>
                 <Link to={"/register"}>나도 지도 만들래</Link>

@@ -29,3 +29,7 @@ export const pageGetAPI = async (data) => {
   );
   return res.data;
 };
+export const pagePostAPI = async (data) => {
+  const res = await axios.post(`${REACT_APP_PARSE_API}${pageGetPath}`, data);
+  return res.data;
+};
