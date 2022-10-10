@@ -12,15 +12,12 @@ function Writer() {
   const [address, setAddress] = useState();
   const [description, setDescription] = useState();
   const [writer, setWriter] = useState();
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState(37.566812940227386);
+  const [lng, setLng] = useState(126.9786522620371);
   const [makerImg, setMakerImg] = useState();
   const onChangeTitleEvent = (e) => setTitle(e.target.value);
   const onChangeDescriptionEvent = (e) => setDescription(e.target.value);
   const onChangeWriterEvent = (e) => setWriter(e.target.value);
-  const onChangeLatEvent = (e) => setLat(e.target.value);
-  const onChangeLngEvent = (e) => setLng(e.target.value);
-  const onChangeMakerImgEvent = (e) => setMakerImg(e.target.value);
   const onSubmit = async () => {
     const pageData = {
       title: title,
@@ -58,11 +55,37 @@ function Writer() {
   const handleClick = () => {
     open({ onComplete: handleComplete });
   };
+  const handleMyLocationClick = () => {
+    const container = document.querySelector(".kakao-map");
+    const options = {
+      center: new kakao.maps.LatLng(37.566812940227386, 126.9786522620371),
+      level: 3,
+    };
+    const map = new kakao.maps.Map(container, options);
+    var marker = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(37.563109, 126.89143),
+    });
+
+    if (navigator.geolocation) {
+      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude, // 위도
+          lon = position.coords.longitude; // 경도
+
+        const locPosition = new kakao.maps.LatLng(lat, lon);
+
+        // 마커와 인포윈도우를 표시합니다
+        map.setCenter(locPosition);
+        marker.setPosition(locPosition);
+      });
+    }
+  };
   useEffect(() => {
     kakao.maps.load(() => {
       const container = document.querySelector(".kakao-map");
       const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(37.566812940227386, 126.9786522620371),
         level: 3,
       };
       const map = new kakao.maps.Map(container, options);
@@ -93,6 +116,27 @@ function Writer() {
       });
     });
   }, [address]);
+  useEffect(() => {
+    kakao.maps.load(() => {
+      const container = document.querySelector(".kakao-map");
+      const options = {
+        center: new kakao.maps.LatLng(lat, lng),
+        level: 3,
+      };
+      const map = new kakao.maps.Map(container, options);
+      kakao.maps.event.addListener(map, "idle", function () {
+        var marker = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(lat, lng),
+        });
+        var latlng = map.getCenter();
+        setLat(latlng.getLat());
+        setLng(latlng.getLng());
+
+        marker.setPosition(latlng);
+      });
+    });
+  }, []);
   return (
     <>
       <div className="form-signin">
@@ -133,6 +177,25 @@ function Writer() {
         <button type="button" onClick={handleClick}>
           지도 검색하기
         </button>
+        <button type="button" onClick={handleMyLocationClick}>
+          내 위치로 이동하기
+        </button>
+        <input
+          type="hidden"
+          value={lat}
+          className="lat form-control"
+          name="lat"
+          placeholder="lat"
+          required
+        />
+        <input
+          type="hidden"
+          value={lng}
+          className="lng form-control"
+          name="lng"
+          placeholder="lng"
+          required
+        />
         <br />
         <div
           type="submit"
