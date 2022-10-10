@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { pagePostAPI } from "../api/api";
-import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -18,6 +17,25 @@ function Writer() {
   const onChangeTitleEvent = (e) => setTitle(e.target.value);
   const onChangeDescriptionEvent = (e) => setDescription(e.target.value);
   const onChangeWriterEvent = (e) => setWriter(e.target.value);
+  const onChangeImgEvent = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setMakerImg(base64);
+  };
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
   const onSubmit = async () => {
     const pageData = {
       title: title,
@@ -168,6 +186,13 @@ function Writer() {
           name="writer"
           placeholder="글쓴이"
           required
+        />
+        <br />
+        <input
+          type="file"
+          onChange={(e) => {
+            onChangeImgEvent(e);
+          }}
         />
         <br />
         <div
