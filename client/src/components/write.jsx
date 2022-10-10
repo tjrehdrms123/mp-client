@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { pagePostAPI } from "../api/api";
 import { useDaumPostcodePopup } from "react-daum-postcode";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function Writer() {
@@ -166,25 +166,32 @@ function Writer() {
         <br />
         <input
           type="file"
+          className="form-control"
+          id="formFile"
           onChange={(e) => {
             onChangeImgEvent(e);
           }}
         />
         <br />
-        <div
-          className="kakao-map"
-          style={{ width: "300px", height: "300px" }}
-        ></div>
-        <button type="button" onClick={handleClick}>
-          지도 검색하기
-        </button>
-        <button type="button" onClick={handleMyLocationClick}>
-          내 위치로 이동하기
-        </button>
+        <div className="map-box">
+          <div className="kakao-map"></div>
+        </div>
+        <div className="write-event-btn-box">
+          <div type="button" className="write-event-btn" onClick={handleClick}>
+            지도 검색하기
+          </div>
+          <div
+            type="button"
+            className="write-event-btn"
+            onClick={handleMyLocationClick}
+          >
+            내 위치로
+          </div>
+        </div>
         <input
           type="hidden"
           value={lat}
-          className="lat form-control"
+          className="lat btn-file form-control"
           name="lat"
           placeholder="lat"
           required
@@ -204,6 +211,9 @@ function Writer() {
           className="btn btn-lg btn-login btn-block"
         >
           추억 남기기
+        </div>
+        <div className="btn btn-lg btn-login btn-block">
+          <Link to={`/map/${objectId}`}>돌아가기</Link>
         </div>
       </div>
     </>
