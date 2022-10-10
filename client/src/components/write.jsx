@@ -3,10 +3,13 @@ import { pagePostAPI } from "../api/api";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function Writer() {
+  const { kakao } = window;
   const { objectId } = useParams();
   const [title, setTitle] = useState();
+  const [address, setAddress] = useState();
   const [description, setDescription] = useState();
   const [writer, setWriter] = useState();
   const [lat, setLat] = useState();
@@ -49,13 +52,47 @@ function Writer() {
           extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+      setAddress(fullAddress);
     }
-
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   };
   const handleClick = () => {
     open({ onComplete: handleComplete });
   };
+  useEffect(() => {
+    kakao.maps.load(() => {
+      const container = document.querySelector(".kakao-map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+      const map = new kakao.maps.Map(container, options);
+      var geocoder = new kakao.maps.services.Geocoder();
+      geocoder.addressSearch(address, function (result, status) {
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+          // 결과값으로 받은 위치를 마커로 표시합니다
+          var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+          });
+
+          // 인포윈도우로 장소에 대한 설명을 표시합니다
+          var infowindow = new kakao.maps.InfoWindow({
+            content:
+              '<div style="width:150px;text-align:center;padding:6px 0;">' +
+              address +
+              "</div>",
+          });
+          infowindow.open(map, marker);
+
+          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+          map.setCenter(coords);
+        }
+      });
+    });
+  }, [address]);
   return (
     <>
       <div className="form-signin">
@@ -89,8 +126,12 @@ function Writer() {
           required
         />
         <br />
+        <div
+          className="kakao-map"
+          style={{ width: "300px", height: "300px" }}
+        ></div>
         <button type="button" onClick={handleClick}>
-          Open
+          지도 검색하기
         </button>
         <br />
         <div
