@@ -242,9 +242,11 @@ a:focus {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  cursor: pointer;
   box-shadow: 0px 20px 0px 0px #fff;
   width: 30%;
+}
+.mapbox > .toolbox > .link_box > .write_btn a{
+  cursor: pointer;
 }
 /* 로그인 페이지 */
 .form-signin {

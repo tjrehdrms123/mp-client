@@ -27,8 +27,10 @@ function Login() {
     const loginData = await loginAPI(submitData);
     const { status, data } = loginData;
     const accessToken = data.accessToken;
+    const refreshToken = data.refreshToken;
     if (status === 200) {
         localStorage.setItem('accessToken',accessToken);
+        localStorage.setItem('refreshToken',refreshToken);
         setAuthorizationToken(accessToken);
         alert(`${data.message}`);
         window.location.href=`/map/${data.objectId}`;

@@ -50,6 +50,13 @@ function Writer() {
     const writeData = await pagePostAPI(pageData);
     console.log("writeData: ", writeData);
     const { status, data } = writeData;
+    if(status === 200){
+      alert(`${data.message}`);
+      window.location.href=`/map/${objectId}`;
+    } else {
+      alert(`다시 로그인해주세요 : ${data.message}`);
+      window.location.href=`/`;
+    }
   };
   const open = useDaumPostcodePopup(
     "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"

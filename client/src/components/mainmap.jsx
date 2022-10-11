@@ -17,7 +17,6 @@ function Mainmap() {
     false,
   ]); // 인포윈도우 Open 여부를 저장하는 state 입니다.
   const [showDetail, setShowDetail] = useState(false);
-  const [showWrite, setShowWrite] = useState(false);
   const pageGetAllData = async () => {
     setLocalStorageAuthorizationToken(); // axios전 token 인터셉터 셋팅
     if (objectId) {
@@ -32,9 +31,6 @@ function Mainmap() {
   };
   const detailEvent = () => {
     showDetail ? setShowDetail(false) : setShowDetail(true);
-  };
-  const writeEvent = () => {
-    showWrite ? setShowWrite(false) : setShowWrite(true);
   };
 
   useEffect(() => {
@@ -88,17 +84,14 @@ function Mainmap() {
               />
               {pinData[1] && pinData[1]}
             </div>
-            <div
-              className={showWrite ? "showWriteBox on" : "showWriteBox"}
-            ></div>
             <div className="link_box">
               <div className="write_btn">
                 <Link to={"/map"}>전체 추억 보기</Link>
               </div>
-              <div className="write_btn" onClick={writeEvent}>
+              <div className="write_btn">
                 <Link to={`/writer/${objectId}`}>추억 남기기</Link>
               </div>
-              <div className="write_btn" onClick={writeEvent}>
+              <div className="write_btn">
                 <Link to={"/register"}>나도 지도 만들래</Link>
               </div>
             </div>
