@@ -84,7 +84,10 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  useEffect(() => {
+  if(objectId == false || objectId == 'undefined'){
+    window.location.href=`/`;
+  }
+  useEffect(() => { 
     kakao.maps.load(() => {
       const container = document.querySelector(".kakao-map");
       const options = {
