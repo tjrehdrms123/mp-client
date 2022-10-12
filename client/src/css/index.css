@@ -1,8 +1,23 @@
+@font-face {
+  font-family: 'HBIOS-SYS';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  /* overflow: hidden; */
+  background-color: #f6eee7;
+  font-family: 'HBIOS-SYS';
 }
 a {
   color: #fff !important;
+}
+
+.main_color{
+  color : #f13f57;
+}
+.bold{
+  font-weight: bold;
 }
 
 .card-big-shadow {
@@ -256,6 +271,7 @@ a:focus {
 }
 .form-signin .form-signin-heading {
   margin-bottom: 10px;
+  text-align: center;
 }
 .form-signin .form-control {
   position: relative;

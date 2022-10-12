@@ -47,7 +47,8 @@ function Login() {
   return (
     <>
         <div className="form-signin">
-            <h2 className="form-signin-heading">지도 보러가기</h2>
+            <h2 className="form-signin-heading text">추억 <span className='main_color bold'>지도</span> 보러가기</h2>
+            <h5 className="form-signin-heading text">나의 추억을 지도에 등록하고 공유해보세요</h5>
             <input type="text" onChange={onChangeUidEvent} value={uid} className="uid form-control" name="uid" placeholder='아이디' required autoFocus/>
                 <input type="password" onChange={onChangePasswordEvent} value={password} className="password form-control" name="password" placeholder='비밀번호' required />
                 <input type="text" onChange={onChangeEmailAuthCodeEvent} value={emailAuthCode} className="email_auth_code form-control" name="email_auth_code" placeholder='이메일 인증 코드' required />
