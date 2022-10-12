@@ -10,6 +10,7 @@ import { Link, useParams } from "react-router-dom";
 
 function Mainmap() {
   const { objectId } = useParams();
+  const [strogeObjectId, setStrogeObjectId] = useState();
   const [mapData, setMapData] = useState();
   const [pinData, setPinData] = useState([
     "여기를 클릭하면 사용 법이 나와요",
@@ -32,8 +33,13 @@ function Mainmap() {
   const detailEvent = () => {
     showDetail ? setShowDetail(false) : setShowDetail(true);
   };
-
+  const copyLinkEvent = () => {
+    const url = window.location.href;
+    url.select();
+    document.execCommand('copy');
+  }
   useEffect(() => {
+    setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
     pageGetAllData();
   }, []);
   return (
@@ -91,9 +97,16 @@ function Mainmap() {
               <div className="write_btn">
                 <Link to={`/writer/${objectId}`}>추억 남기기</Link>
               </div>
-              <div className="write_btn">
-                <Link to={"/register"}>나도 지도 만들래</Link>
-              </div>
+              {
+                strogeObjectId ? 
+                <div className="write_btn" onClick={copyLinkEvent}>
+                  <Link to={""}>지도 공유</Link>
+                </div>
+                : 
+                <div className="write_btn">
+                  <Link to={"/register"}>나도 지도 만들래</Link>
+                </div>
+              }              
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 function Writer() {
   const { kakao } = window;
   const { objectId } = useParams();
+  const [strogeObjectId, setStrogeObjectId] = useState();
   const [title, setTitle] = useState();
   const [address, setAddress] = useState();
   const [description, setDescription] = useState();
@@ -53,9 +54,6 @@ function Writer() {
     if(status === 200){
       alert(`${data.message}`);
       window.location.href=`/map/${objectId}`;
-    } else {
-      alert(`다시 로그인해주세요 : ${data.message}`);
-      window.location.href=`/`;
     }
   };
   const open = useDaumPostcodePopup(
@@ -84,9 +82,12 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  if(objectId == false || objectId == 'undefined'){
-    window.location.href=`/`;
+  if(objectId === 'undefined'){
+    window.location.href=`/writer/${strogeObjectId}`;
   }
+  useEffect(()=>{
+    setStrogeObjectId(localStorage.getItem('objectId'));
+  },[]);
   useEffect(() => { 
     kakao.maps.load(() => {
       const container = document.querySelector(".kakao-map");

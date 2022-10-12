@@ -7,6 +7,7 @@ import { setAuthorizationToken } from '../utils/interceptor';
 function Login() {
   const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
+  const [strogeObjectId, setStrogeObjectId] = useState("");
   const [emailAuthCode, setemailAuthCode] = useState("");
   const onChangeUidEvent = (e) => (
     setUid(e.target.value)
@@ -31,6 +32,7 @@ function Login() {
     if (status === 200) {
         localStorage.setItem('accessToken',accessToken);
         localStorage.setItem('refreshToken',refreshToken);
+        localStorage.setItem('objectId',data.objectId);
         setAuthorizationToken(accessToken);
         alert(`${data.message}`);
         window.location.href=`/map/${data.objectId}`;
@@ -38,11 +40,11 @@ function Login() {
         alert(`Error : ${data.message}`);
     }    
   }
-  const isUser = () => {
-    // return localStorageAccessToken ? window.location.href=`/map${objectId}` : '';
+  if(strogeObjectId != ''){    
+    window.location.href=`/map/${strogeObjectId}`;
   }
   useEffect(()=>{
-    isUser()
+    setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
   },[]);
   return (
     <>
