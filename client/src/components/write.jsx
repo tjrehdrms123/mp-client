@@ -7,7 +7,7 @@ import { useEffect } from "react";
 function Writer() {
   const { kakao } = window;
   const { objectId } = useParams();
-  const [strogeObjectId, setStrogeObjectId] = useState();
+  const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
   const [title, setTitle] = useState();
   const [address, setAddress] = useState();
   const [description, setDescription] = useState();
@@ -82,12 +82,9 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  if(objectId === 'undefined'){
+  if(objectId === 'undefined' || objectId != strogeObjectId){
     window.location.href=`/writer/${strogeObjectId}`;
   }
-  useEffect(()=>{
-    setStrogeObjectId(localStorage.getItem('objectId'));
-  },[]);
   useEffect(() => { 
     kakao.maps.load(() => {
       const container = document.querySelector(".kakao-map");
