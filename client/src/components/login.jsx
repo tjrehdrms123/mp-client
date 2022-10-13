@@ -7,7 +7,7 @@ import { setAuthorizationToken } from '../utils/interceptor';
 function Login() {
   const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
-  const [strogeObjectId, setStrogeObjectId] = useState("");
+  const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
   const [emailAuthCode, setemailAuthCode] = useState("");
   const onChangeUidEvent = (e) => (
     setUid(e.target.value)
@@ -44,9 +44,6 @@ function Login() {
   if(strogeObjectId != '' && strogeObjectId != null && strogeObjectId != undefined){    
     window.location.href=`/map/${strogeObjectId}`;
   }
-  useEffect(()=>{
-    setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
-  },[]);
   return (
     <>
         <div className="form-signin">

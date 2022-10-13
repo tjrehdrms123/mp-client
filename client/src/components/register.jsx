@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { emailAuthAPI, registerAPI } from '../api/api';
 
 function Register() {
+  const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
   const [uid, setUid] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -44,6 +45,9 @@ function Register() {
     } else {
         alert(`Error : ${data.message}`);
     }    
+  }
+  if(strogeObjectId != '' && strogeObjectId != null && strogeObjectId != undefined){    
+    window.location.href=`/map/${strogeObjectId}`;
   }
   return (
     <>
