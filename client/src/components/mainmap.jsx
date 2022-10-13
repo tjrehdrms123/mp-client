@@ -93,10 +93,14 @@ function Mainmap() {
             <div className="link_box">
               <div className="write_btn">
                 <Link to={"/map"}>전체 추억 보기</Link>
-              </div>
-              <div className="write_btn">
-                <Link to={`/writer/${objectId}`}>추억 남기기</Link>
-              </div>
+              </div>              
+              {
+                strogeObjectId ?
+                <div className="write_btn">
+                  <Link to={`/writer/${objectId}`}>추억 남기기</Link>
+                </div>
+                :''
+              }
               {
                 strogeObjectId ? 
                 <div className="write_btn" onClick={copyLinkEvent}>
