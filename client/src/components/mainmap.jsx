@@ -34,9 +34,15 @@ function Mainmap() {
     showDetail ? setShowDetail(false) : setShowDetail(true);
   };
   const copyLinkEvent = () => {
-    const url = window.location.href;
-    url.select();
-    document.execCommand('copy');
+    let url = '';
+    let textarea = document.createElement("textarea");
+    document.body.appendChild(textarea);
+    url = window.document.location.href;
+    textarea.value = url;
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    alert("추억지도 주소가 복사되었습니다.")
   }
   useEffect(() => {
     setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
