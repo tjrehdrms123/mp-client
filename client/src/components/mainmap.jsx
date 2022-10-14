@@ -47,7 +47,7 @@ function Mainmap() {
   useEffect(() => {
     setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
     pageGetAllData();
-  }, []);
+  }, [objectId]);
   return (
     <>
       <div className="background">
@@ -110,7 +110,7 @@ function Mainmap() {
               {
                 strogeObjectId ? 
                 <div className="write_btn" onClick={copyLinkEvent}>
-                  <Link to={""}>지도 공유</Link>
+                  <Link to={"/map"}>지도 공유</Link>
                 </div>
                 : 
                 <div className="write_btn">
