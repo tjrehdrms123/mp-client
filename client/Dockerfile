@@ -1,5 +1,5 @@
-FROM node:16.13.1-alpine
-MAINTAINER Donggeun seogdonggeun@gmail.com
+FROM node:16.3.0-alpine
+MAINTAINER donggeun seogdonggeun@gmail.com
 
 RUN mkdir /client
 WORKDIR /client
