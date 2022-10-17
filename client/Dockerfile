@@ -8,4 +8,4 @@ COPY package.json .
 
 RUN npm install --no-cache
 
-CMD ["npm", "rum", "build"]
+CMD ["npm", "run", "build"]
