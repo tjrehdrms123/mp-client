@@ -60,6 +60,7 @@ function Login() {
               <div type="submit" className="btn btn-lg btn-login btn-block">내 지도 만들러 가기</div>
             </Link>
         </div>
+        <div className="adfit"></div>
     </>
   )
 }

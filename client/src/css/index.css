@@ -331,3 +331,7 @@ a:focus {
   font-size: 1.25rem;
   cursor: pointer;
 }
+.kakao_ad_area{
+  position: absolute;
+  bottom: 0px;
+}
