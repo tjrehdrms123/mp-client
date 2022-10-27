@@ -114,7 +114,7 @@ function Mainmap() {
                 </div>
                 : 
                 <div className="write_btn">
-                  <Link to={"/register"}>나도 지도 만들래</Link>
+                  <Link to={"/"}>나도 지도 만들래</Link>
                 </div>
               }              
             </div>

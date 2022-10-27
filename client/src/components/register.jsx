@@ -31,17 +31,10 @@ function Register() {
         "email" : email,
     }
     const registerData = await registerAPI(submitData);
-    console.log('registerData :',registerData);
     const { status, data } = registerData;
     if (status === 200) {
-        const emailAuthData = await emailAuthAPI(emailData);
-        const { status, data } = emailAuthData;
-        if(status === 200){
-            alert("이메일 인증코드를 확인해주세요");
-            window.location.href=`/login`;
-        } else {
-            alert(`Error : ${data.message}`);
-        }
+      alert("로그인이 완료 됐습니다.");
+      window.location.href=`/login`;
     } else {
         alert(`Error : ${data.message}`);
     }    

@@ -38,6 +38,7 @@ function Login() {
         alert(`${data.message}`);
         window.location.href=`/map/${data.objectId}`;
     } else {
+        console.log('data : ',data);
         alert(`Error : ${data.message}`);
     }    
   }
@@ -51,7 +52,7 @@ function Login() {
             <h5 className="form-signin-heading text">나의 추억을 지도에 등록하고 공유해보세요</h5>
             <input type="text" onChange={onChangeUidEvent} value={uid} className="uid form-control" name="uid" placeholder='아이디'  autoFocus/>
                 <input type="password" onChange={onChangePasswordEvent} value={password} className="password form-control" name="password" placeholder='비밀번호'  />
-                <input type="text" onChange={onChangeEmailAuthCodeEvent} value={emailAuthCode} className="email_auth_code form-control" name="email_auth_code" placeholder='이메일 인증 코드'  />
+                {/* <input type="text" onChange={onChangeEmailAuthCodeEvent} value={emailAuthCode} className="email_auth_code form-control" name="email_auth_code" placeholder='이메일 인증 코드'  /> */}
                 <br/>
             <div type="submit" onClick={onSubmit} className="btn btn-lg btn-login btn-block">로그인</div>
             <br/>
