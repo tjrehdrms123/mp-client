@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { pagePostAPI } from "../api/api";
 import { useDaumPostcodePopup } from "react-daum-postcode";
+import { setLocalStorageAuthorizationToken } from "../utils/interceptor";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function Writer() {
+  setLocalStorageAuthorizationToken();
   const { kakao } = window;
   const { objectId } = useParams();
   const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
@@ -48,6 +50,7 @@ function Writer() {
       auth_id: objectId,
       markerimg: makerImg,
     };
+    console.log(pageData);
     const writeData = await pagePostAPI(pageData);
     console.log("writeData: ", writeData);
     const { status, data } = writeData;

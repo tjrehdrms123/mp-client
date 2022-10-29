@@ -30,6 +30,8 @@ export const pageGetAPI = async (data) => {
   return res.data;
 };
 export const pagePostAPI = async (data) => {
+  await alert('추억 로딩 중 입니다');
   const res = await axios.post(`${REACT_APP_PARSE_API}${pageGetPath}`, data);
+  await alert('추억 로딩 완료됐습니다');
   return res.data;
 };

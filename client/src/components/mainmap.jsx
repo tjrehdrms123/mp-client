@@ -9,6 +9,7 @@ import sample from "../images/background.jpg";
 import { Link, useParams } from "react-router-dom";
 
 function Mainmap() {
+  setLocalStorageAuthorizationToken();
   const { objectId } = useParams();
   const [strogeObjectId, setStrogeObjectId] = useState();
   const [mapData, setMapData] = useState();
