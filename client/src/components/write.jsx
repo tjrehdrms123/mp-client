@@ -9,7 +9,9 @@ function Writer() {
   setLocalStorageAuthorizationToken();
   const { kakao } = window;
   const { objectId } = useParams();
-  const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
+  const [strogeObjectId, setStrogeObjectId] = useState(
+    localStorage.getItem("objectId")
+  );
   const [title, setTitle] = useState();
   const [address, setAddress] = useState();
   const [description, setDescription] = useState();
@@ -41,6 +43,18 @@ function Writer() {
     });
   };
   const onSubmit = async () => {
+    if (!title) {
+      alert("제목을 입력해주세요");
+    }
+    if (!description) {
+      alert("설명을 입력해주세요");
+    }
+    if (!writer) {
+      alert("작성자를 입력해주세요");
+    }
+    if (!makerImg) {
+      alert("이미지를 등록해주세요");
+    }
     const pageData = {
       title: title,
       description: description,
@@ -54,9 +68,9 @@ function Writer() {
     const writeData = await pagePostAPI(pageData);
     console.log("writeData: ", writeData);
     const { status, data } = writeData;
-    if(status === 200){
+    if (status === 200) {
       alert(`${data.message}`);
-      window.location.href=`/map/${objectId}`;
+      window.location.href = `/map/${objectId}`;
     }
   };
   const open = useDaumPostcodePopup(
@@ -85,10 +99,10 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  if(objectId === 'undefined' || objectId != strogeObjectId){
-    window.location.href=`/writer/${strogeObjectId}`;
+  if (objectId === "undefined" || objectId != strogeObjectId) {
+    window.location.href = `/writer/${strogeObjectId}`;
   }
-  useEffect(() => { 
+  useEffect(() => {
     kakao.maps.load(() => {
       const container = document.querySelector(".kakao-map");
       const options = {
