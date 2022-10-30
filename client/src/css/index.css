@@ -1,22 +1,23 @@
 @font-face {
-  font-family: 'HBIOS-SYS';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+  font-family: "KOFIHDrLEEJWTTF-B";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-B.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   background-color: #f6eee7;
-  font-family: 'HBIOS-SYS';
+  font-family: "KOFIHDrLEEJWTTF-B";
 }
 a {
   color: #fff !important;
 }
 
-.main_color{
-  color : #f13f57;
+.main_color {
+  color: #f13f57;
 }
-.bold{
+.bold {
   font-weight: bold;
 }
 
@@ -260,7 +261,7 @@ a:focus {
   width: 100%;
   margin: 0 5px;
 }
-.mapbox > .toolbox > .link_box > .write_btn a{
+.mapbox > .toolbox > .link_box > .write_btn a {
   cursor: pointer;
 }
 /* 로그인 페이지 */
@@ -331,7 +332,7 @@ a:focus {
   font-size: 1.25rem;
   cursor: pointer;
 }
-.kakao_ad_area{
+.kakao_ad_area {
   position: absolute;
   bottom: 0px;
 }
