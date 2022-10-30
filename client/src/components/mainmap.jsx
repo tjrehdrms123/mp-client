@@ -101,9 +101,17 @@ function Mainmap() {
               글쓴이:{pinData[3] && pinData[3]}
             </div>
             <div className="link_box">
-              <div className="write_btn">
-                <Link to={"/map"}>전체 추억 보기</Link>
-              </div>
+              {window.document.location.pathname === "/map" &&
+              strogeObjectId ? (
+                <div className="write_btn">
+                  <Link to={`/map/${strogeObjectId}`}>내 추억 보기</Link>
+                </div>
+              ) : (
+                <div className="write_btn">
+                  <Link to={"/map"}>전체 추억 보기</Link>
+                </div>
+              )}
+
               {strogeObjectId ? (
                 <div className="write_btn">
                   <Link to={`/writer/${objectId}`}>추억 남기기</Link>
