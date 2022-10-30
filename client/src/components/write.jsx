@@ -45,15 +45,19 @@ function Writer() {
   const onSubmit = async () => {
     if (!title) {
       alert("제목을 입력해주세요");
+      return false;
     }
     if (!description) {
       alert("설명을 입력해주세요");
+      return false;
     }
     if (!writer) {
       alert("작성자를 입력해주세요");
+      return false;
     }
     if (!makerImg) {
       alert("이미지를 등록해주세요");
+      return false;
     }
     const pageData = {
       title: title,

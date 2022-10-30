@@ -35,7 +35,7 @@ function Mainmap() {
     showDetail ? setShowDetail(false) : setShowDetail(true);
   };
   const copyLinkEvent = () => {
-    let url = '';
+    let url = "";
     let textarea = document.createElement("textarea");
     document.body.appendChild(textarea);
     url = window.document.location.href;
@@ -43,10 +43,10 @@ function Mainmap() {
     textarea.select();
     document.execCommand("copy");
     document.body.removeChild(textarea);
-    alert("추억지도 주소가 복사되었습니다.")
-  }
+    alert("추억지도 주소가 복사되었습니다.");
+  };
   useEffect(() => {
-    setStrogeObjectId(localStorage.getItem('objectId')); // 세션 토큰 확인
+    setStrogeObjectId(localStorage.getItem("objectId")); // 세션 토큰 확인
     pageGetAllData();
   }, [objectId]);
   return (
@@ -69,6 +69,7 @@ function Mainmap() {
                           items.title,
                           items.description,
                           items.markerimg.url,
+                          items.writer,
                         ])
                       }
                       position={{
@@ -96,28 +97,29 @@ function Mainmap() {
                 className="detail_img"
               />
               {pinData[1] && pinData[1]}
+              <br />
+              글쓴이:{pinData[3] && pinData[3]}
             </div>
             <div className="link_box">
               <div className="write_btn">
                 <Link to={"/map"}>전체 추억 보기</Link>
-              </div>              
-              {
-                strogeObjectId ?
+              </div>
+              {strogeObjectId ? (
                 <div className="write_btn">
                   <Link to={`/writer/${objectId}`}>추억 남기기</Link>
                 </div>
-                :''
-              }
-              {
-                strogeObjectId ? 
+              ) : (
+                ""
+              )}
+              {strogeObjectId ? (
                 <div className="write_btn" onClick={copyLinkEvent}>
                   <Link to={`/map/${objectId}`}>지도 공유</Link>
                 </div>
-                : 
+              ) : (
                 <div className="write_btn">
                   <Link to={"/"}>나도 지도 만들래</Link>
                 </div>
-              }              
+              )}
             </div>
           </div>
         </div>
