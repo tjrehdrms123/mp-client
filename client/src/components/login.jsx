@@ -72,7 +72,7 @@ function Login() {
             <div type="submit" onClick={onSubmit} className="btn btn-lg btn-login btn-block">로그인</div>
             <br/>
             <Link to={'/register'}>
-              <div type="submit" className="btn btn-lg btn-login btn-block">내 지도 만들러 가기</div>
+              <div type="submit" className="btn btn-lg btn-login btn-block">회원가입</div>
             </Link>
         </div>
         <div className="adfit"></div>

@@ -121,11 +121,11 @@ function Mainmap() {
               )}
               {strogeObjectId ? (
                 <div className="write_btn" onClick={copyLinkEvent}>
-                  <Link to={`/map`}>지도 공유</Link>
+                  <Link to={`/map/${strogeObjectId}`}>내 지도 공유</Link>
                 </div>
               ) : (
                 <div className="write_btn">
-                  <Link to={"/"}>나도 지도 만들래</Link>
+                  <Link to={"/"}>회원가입</Link>
                 </div>
               )}
             </div>
