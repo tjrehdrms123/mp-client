@@ -26,7 +26,6 @@ function Login() {
         "auth_type" : 0
     };
     const loginData = await loginAPI(submitData);
-    console.log(loginData);
     const { status, data } = loginData;
     const accessToken = data.accessToken;
     const refreshToken = data.refreshToken;
