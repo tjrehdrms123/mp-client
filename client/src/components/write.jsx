@@ -233,7 +233,6 @@ function Writer() {
           <Link to={`/map/${objectId}`}>돌아가기</Link>
         </div>
       </div>
-      <Adfit/>
     </>
   );
 }
