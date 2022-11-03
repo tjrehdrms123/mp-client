@@ -105,7 +105,7 @@ function Writer() {
   if (objectId === "undefined" && strogeObjectId === "undefined") {
     window.location.href = `/map`;
   } else {
-    window.location.href = `/map/${strogeObjectId}`;
+    window.location.href = `/writer/${strogeObjectId}`;
   }
   useEffect(() => {
     kakao.maps.load(() => {
