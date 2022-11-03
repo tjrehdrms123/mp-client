@@ -135,7 +135,6 @@ function Mainmap() {
           </div>
         </div>
       </div>
-      <Adfit/>
     </>
   );
 }
