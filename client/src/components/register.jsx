@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { emailAuthAPI, registerAPI } from '../api/api';
+import Adfit from './adfit';
 
 function Register() {
   const [strogeObjectId, setStrogeObjectId] = useState(localStorage.getItem('objectId'));
@@ -53,6 +54,7 @@ function Register() {
                 <br/>
             <div type="submit" onClick={onSubmit} className="btn btn-lg btn-login btn-block">회원가입 하기</div>
         </div>
+        <Adfit/>
     </>
   )
 }

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { loginAPI } from '../api/api';
 import { setAuthorizationToken } from '../utils/interceptor';
+import Adfit from "./adfit";
 
 function Login() {
   const [uid, setUid] = useState("");
@@ -43,22 +44,6 @@ function Login() {
   if(strogeObjectId != '' && strogeObjectId != null && strogeObjectId != undefined){    
     window.location.href=`/map/${strogeObjectId}`;
   }
-  useEffect(()=>{
-    let ins = document.createElement('ins');
-    let scr = document.createElement('script');
-
-    ins.className = 'kakao_ad_area';
-    ins.style = "display:none; width:100%;";
-    scr.async = 'true';
-    scr.type = "text/javascript";
-    scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
-    ins.setAttribute('data-ad-width', '728');
-    ins.setAttribute('data-ad-height', '90');
-    ins.setAttribute('data-ad-unit', 'DAN-ZJ61KUWftJDuIbV2');
-
-    document.querySelector('.adfit').appendChild(ins);
-    document.querySelector('.adfit').appendChild(scr);
-  },[]);
   return (
     <>
         <div className="form-signin">
@@ -74,7 +59,7 @@ function Login() {
               <div type="submit" className="btn btn-lg btn-login btn-block">회원가입</div>
             </Link>
         </div>
-        <div className="adfit"></div>
+        <Adfit/>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { setLocalStorageAuthorizationToken } from "../utils/interceptor";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import Adfit from "./adfit";
 
 function Writer() {
   setLocalStorageAuthorizationToken();
@@ -235,6 +236,7 @@ function Writer() {
           <Link to={`/map/${objectId}`}>돌아가기</Link>
         </div>
       </div>
+      <Adfit/>
     </>
   );
 }

@@ -7,6 +7,7 @@ import { setLocalStorageAuthorizationToken } from "../utils/interceptor";
 import pin from "../images/pin.png";
 import sample from "../images/background.jpg";
 import { Link, useParams } from "react-router-dom";
+import Adfit from "./adfit";
 
 function Mainmap() {
   setLocalStorageAuthorizationToken();
@@ -128,6 +129,7 @@ function Mainmap() {
           </div>
         </div>
       </div>
+      <Adfit/>
     </>
   );
 }
