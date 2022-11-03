@@ -102,8 +102,10 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  if (objectId === "undefined") {
+  if (objectId === "undefined" && strogeObjectId === "undefined") {
     window.location.href = `/map`;
+  } else {
+    window.location.href = `/map/${strogeObjectId}`;
   }
   useEffect(() => {
     kakao.maps.load(() => {
