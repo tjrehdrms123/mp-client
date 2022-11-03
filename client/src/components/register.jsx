@@ -33,7 +33,7 @@ function Register() {
     const registerData = await registerAPI(submitData);
     const { status, data } = registerData;
     if (status === 200) {
-      alert("로그인이 완료 됐습니다.");
+      alert("회원가입이 완료 됐습니다.");
       window.location.href=`/login`;
     } else {
         alert(`Error : ${data.message}`);

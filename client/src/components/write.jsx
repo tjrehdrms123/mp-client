@@ -68,9 +68,7 @@ function Writer() {
       auth_id: objectId,
       markerimg: makerImg,
     };
-    console.log(pageData);
     const writeData = await pagePostAPI(pageData);
-    console.log("writeData: ", writeData);
     const { status, data } = writeData;
     if (status === 200) {
       alert(`${data.message}`);

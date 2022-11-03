@@ -37,7 +37,6 @@ function Login() {
         alert(`${data.message}`);
         window.location.href=`/map/${data.objectId}`;
     } else {
-        console.log('data : ',data);
         alert(`Error : ${data.message}`);
     }    
   }
