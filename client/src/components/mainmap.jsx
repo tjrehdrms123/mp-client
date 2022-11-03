@@ -112,13 +112,9 @@ function Mainmap() {
                 </div>
               )}
 
-              {strogeObjectId ? (
                 <div className="write_btn">
                   <Link to={`/writer/${objectId}`}>추억 남기기</Link>
                 </div>
-              ) : (
-                ""
-              )}
               {strogeObjectId ? (
                 <div className="write_btn" onClick={copyLinkEvent}>
                   <Link to={`/map/${strogeObjectId}`}>내 지도 공유</Link>

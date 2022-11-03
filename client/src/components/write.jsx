@@ -68,7 +68,9 @@ function Writer() {
       auth_id: objectId,
       markerimg: makerImg,
     };
+    console.log(pageData);
     const writeData = await pagePostAPI(pageData);
+    console.log("writeData: ", writeData);
     const { status, data } = writeData;
     if (status === 200) {
       alert(`${data.message}`);
@@ -101,8 +103,8 @@ function Writer() {
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };
-  if (objectId === "undefined" || objectId != strogeObjectId) {
-    window.location.href = `/writer/${strogeObjectId}`;
+  if (objectId === "undefined") {
+    window.location.href = `/map`;
   }
   useEffect(() => {
     kakao.maps.load(() => {
