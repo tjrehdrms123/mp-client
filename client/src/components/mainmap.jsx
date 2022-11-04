@@ -108,9 +108,15 @@ function Mainmap() {
                   <Link to={`/map/${strogeObjectId}`}>내 추억 보기</Link>
                 </div>
               ) : (
+                ""
+              )}
+              {window.document.location.pathname != "/map" &&
+              strogeObjectId ? (
                 <div className="write_btn">
                   <Link to={"/map"}>전체 추억 보기</Link>
                 </div>
+              ) : (
+                ""
               )}
               {
                 objectId ? (
