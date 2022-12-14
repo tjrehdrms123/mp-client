@@ -50,6 +50,10 @@ function Mainmap() {
     setStrogeObjectId(localStorage.getItem("objectId")); // 세션 토큰 확인
     pageGetAllData();
   }, [objectId]);
+  useEffect(() => {
+    // 스크롤 맨 아래로
+    window.scrollTo(0,document.body.scrollHeight);
+  })
   return (
     <>
       <div className="background">
