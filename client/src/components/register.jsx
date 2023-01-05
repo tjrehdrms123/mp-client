@@ -40,6 +40,7 @@ function Register() {
         alert(`Error : ${data.message}`);
     }    
   }
+  // 회원이 회원가입으로 왔을경우
   if(strogeObjectId != '' && strogeObjectId != null && strogeObjectId != undefined){    
     window.location.href=`/map/${strogeObjectId}`;
   }

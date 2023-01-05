@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-
+/**
+ * 카카오 에드핏 설정 총 4개 설정
+ */
 function Adfit() {
     useEffect(()=>{
     // 01

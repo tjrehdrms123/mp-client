@@ -17,13 +17,16 @@ function Writer() {
   const [address, setAddress] = useState();
   const [description, setDescription] = useState();
   const [writer, setWriter] = useState();
-  const [lat, setLat] = useState(37.566812940227386);
+  // 지도 초기 좌표
+  const [lat, setLat] = useState(37.566812940227386); 
+  // 지도 초기 좌표
   const [lng, setLng] = useState(126.9786522620371);
   const [makerImg, setMakerImg] = useState();
   const [myLocation, setMyLocation] = useState(false);
   const onChangeTitleEvent = (e) => setTitle(e.target.value);
   const onChangeDescriptionEvent = (e) => setDescription(e.target.value);
   const onChangeWriterEvent = (e) => setWriter(e.target.value);
+  // base64 파일 추출 코드
   const onChangeImgEvent = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
@@ -96,9 +99,11 @@ function Writer() {
       setAddress(fullAddress);
     }
   };
+  // 지도 검색
   const handleClick = () => {
     open({ onComplete: handleComplete });
   };
+  // 내위치로 이동하는 함수
   const handleMyLocationClick = () => {
     setMyLocation(true);
   };

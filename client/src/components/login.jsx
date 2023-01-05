@@ -31,6 +31,7 @@ function Login() {
     const accessToken = data.accessToken;
     const refreshToken = data.refreshToken;
     if (status === 200) {
+        // 로그인 완료 후 로컬 스토리지 셋팅
         localStorage.setItem('accessToken',accessToken);
         localStorage.setItem('refreshToken',refreshToken);
         localStorage.setItem('objectId',data.objectId);
