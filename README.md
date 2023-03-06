@@ -27,14 +27,15 @@
 ![Adfit수익](./readme_img/adfit_cash.PNG)
 
 ## 프로젝트 리뷰
-
 <details>
-<summary>배운점</summary>
+<summary>코드 리뷰</summary>
 <div markdown="1">   
   <ul>
+    <li><b>Component</b> : 컴포넌트의 하위 컴포넌트로 쪼개서 작업했으면 좋았을꺼 같다. 특히 `mainmap.jsx`파일의 지도 부분과 하단 박스부분이 있다.</li>
+    <li><b>base64 IMG</b> : 이미지 전송을 base64포맷으로 했을때 프론트에서 처리하는 방법을 배웠다. `write.jsx`파일의 convertBase64 함수로 작성했다.</li>
+    <li><b>Bearer Token : </b>API를 호출할때 `interceptor.js`에 axios에 header설정을 통해 Bearer토큰을 셋팅하는 방법을 배웠다.</li>
+    <li><b>adfit : </b>adfit(광고)을 적용하면서 수익화 하는 법에 대한 개념을 익혔다</li>
     <li>지도에 사용자가 작성한 글을 띄워주는 작업을 하면서, 카카오 맵 API, 다음 Postcode를 이용해 활용하는 법을 배웠다.</li>
-    <li>API를 호출할때 Bearer을 셋팅하는 방법을 배웠다. </li>
-    <li>adfit(광고)을 적용하면서 수익화 하는 법에 대한 개념을 익혔다</li>
   </ul>
 </div>
 </details>
